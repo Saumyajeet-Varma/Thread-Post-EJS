@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="w-full min-h-screen bg-zinc-900 p-10 text-white">
+      <div class="w-full flex justify-end">
+        <a
+          class="text-red-700 inline-block mb-3 text-xl hover:text-red-500"
+          href="/logout"
+        >
+          Logout
+        </a>
+      </div>
+      <div class="flex items-center">
+        <div class="w-20 h-20 rounded-md mr-3 overflow-hidden">
+          <a href="/profile/image/<%= user.dp %>">
+            <img
+              class="w-full h-full object-cover"
+              src="/images/uploads/<%= user.dp %>"
+              alt=""
+            />
+          </a>
+        </div>
+        <div class="flex flex-col">
+          <h2 class="text-3xl"><%= user.name %></h2>
+          <h5 class="text-blue-700 text-xl">@<%= user.username %></h5>
+        </div>
+      </div>
+      <a class="text-blue-700 inline-block mt-5" href="/createPost"
+        >Create new Post</a
+      >
+      <div class="mt-5">
+        <h2 class="text-xl text-zinc-400 mb-5">Your posts</h2>
+        <div class="postContainer">
+          <% user.posts.reverse().forEach(post => { %>
+          <div
+            class="w-full border-2 py-3 px-5 bg-zinc-800 border-zinc-600 rounded-md mb-2"
+          >
+            <h4 class="text-blue-600 mb-2">@<%= user.username %></h4>
+            <p><%= post.content %></p>
+            <div class="btns flex mt-3 gap-5">
+              <a
+                class="text-pink-700 hover:text-pink-600"
+                href="/like/<%= post._id %>"
+                >💖<%= post.likes.indexOf(user._id) === -1 ? "Like" : "Unlike"
+                %> (<%= post.likes.length %>)</a
+              >
+              <a
+                class="text-zinc-500 hover:text-zinc-400"
+                href="/edit/<%= post._id %>"
+                >✏️Edit</a
+              >
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

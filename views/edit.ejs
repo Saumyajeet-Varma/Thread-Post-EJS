@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="w-full min-h-screen bg-zinc-900 p-10 text-white flex justify-center items-center"
+    >
+      <div class="w-full max-w-sm">
+        <h2 class="text-3xl mb-5 text-center">Edit your Post</h2>
+        <form action="/update/<%= post._id %>" method="post">
+          <textarea
+            class="w-full h-40 p-3 resize-none outline-none border-2 bg-transparent rounded-md border-zinc-800"
+            placeholder="New content"
+            name="content"
+          >
+<%= post.content %></textarea
+          >
+          <input
+            class="w-full px-3 py-2 bg-yellow-600 text-black rounded-md block cursor-pointer hover:bg-yellow-500 active:bg-yellow-700 disabled:bg-gray-500 disabled:cursor-not-allowed"
+            type="submit"
+            value="Update Post"
+          />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
